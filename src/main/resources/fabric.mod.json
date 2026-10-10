@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "auroraclient",
+  "version": "${version}",
+  "name": "Aurora Client",
+  "description": "Original expandable 26.3 client framework with category GUI, module binds, radar and movement/render utilities.",
+  "authors": ["Aurora"],
+  "environment": "client",
+  "entrypoints": {"client": ["com.aurora.client.AuroraClient"]},
+  "depends": {"fabricloader": ">=0.19.5", "minecraft": "~26.3", "java": ">=25", "fabric-api": "*"}
+}
