@@ -3,14 +3,14 @@ package com.aurora.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.CameraType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.io.*;
 import java.nio.file.*;
@@ -48,13 +48,13 @@ public final class AuroraClient implements ClientModInitializer {
 
     @Override public void onInitializeClient() {
         load();
-        KeyMapping.Category category = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath("auroraclient", "main"));
-        menu = KeyBindingHelper.registerKeyMapping(new KeyMapping("key.auroraclient.menu", InputConstants.Type.KEYSYM, InputConstants.KEY_RSHIFT, category));
+        KeyMapping.Category category = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("auroraclient", "main"));
+        menu = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.auroraclient.menu", InputConstants.Type.KEYBOARD, InputConstants.KEY_RSHIFT, category));
         for (Module m : MODULES) if (m.implemented) {
-            BINDS.put(m.id, KeyBindingHelper.registerKeyMapping(new KeyMapping("key.auroraclient."+m.id,
-                    InputConstants.Type.KEYSYM, InputConstants.KEY_UNKNOWN, category)));
+            BINDS.put(m.id, KeyMappingHelper.registerKeyMapping(new KeyMapping("key.auroraclient."+m.id,
+                    InputConstants.Type.KEYBOARD, -1, category)));
         }
-        HudElementRegistry.addLast(ResourceLocation.fromNamespaceAndPath("auroraclient", "overlay"), AuroraHud::render);
+        HudElementRegistry.addLast(Identifier.fromNamespaceAndPath("auroraclient", "overlay"), (graphics, tickDelta) -> AuroraHud.render(graphics));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (menu.consumeClick()) {
                 if (client.gui.screen() instanceof AuroraScreen) client.gui.setScreen(null);

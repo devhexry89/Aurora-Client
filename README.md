@@ -27,3 +27,8 @@ Only reads client-known players for radar/HUD. Never install this client mod on 
 
 
 IMPORTANT: See UPLOAD_TO_GITHUB.md. This source is not yet compile verified.
+
+
+## v0.3.1 compile fixes
+
+Updated to the Fabric 26.3 keymapping API (`KeyMappingHelper`), Minecraft `Identifier`, SDL keyboard input (`KEYBOARD`), and removed a direct dependency on the missing `DeltaTracker` HUD type. This source ZIP has not been compiled here; GitHub Actions must verify it.

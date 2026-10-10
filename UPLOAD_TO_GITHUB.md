@@ -1,16 +1,12 @@
-# Upload Aurora Client to GitHub (keep folders intact)
+# Upload Aurora Client v0.3.1 to GitHub
 
-**Important:** GitHub's browser upload can flatten files when you select individual files via the file picker. Do not upload every file in the ZIP as a flat list.
+The ZIP contains the full Gradle project, with nested Java folders and `.github/workflows/build.yml`. Do not upload the ZIP itself to GitHub.
 
-## Recommended: Upload using GitHub Desktop
-1. Extract this ZIP somewhere on your PC.
-2. In GitHub Desktop, clone your `mcaurora` repository.
-3. Open the cloned repository folder. Remove any previously misplaced root-level `AuroraClient.java`, `AuroraHud.java`, `AuroraScreen.java`, `Module.java`, `fabric.mod.json`, `en_us.json`, and `build.yml`.
-4. Copy the **contents** of the extracted AuroraClient-GitHub-Ready-26.3 folder into the cloned repository folder, preserving the `src` and `.github` directories.
-5. In GitHub Desktop, commit and push the changes.
-6. Check GitHub's Code tab: `.github/workflows/build.yml` and `src/main/java/com/aurora/client/AuroraClient.java` must exist.
-7. GitHub > Actions > Build Aurora Client > Run workflow.
-8. If successful, download the Artifact named AuroraClient-Fabric-26.3, extract it and put the compiled production JAR in your local Minecraft mods folder.
+1. Extract the ZIP locally.
+2. Clone your Aurora-Client repository using GitHub Desktop.
+3. Copy the **contents** of this extracted folder to the cloned repository root, replacing older project files.
+4. Commit and push.
+5. Open Actions > Build Aurora Client. The push will trigger the build; you can also run it manually.
+6. If the build succeeds, download the AuroraClient-Fabric-26.3 artifact.
 
-## Notes
-This is a source-code TEST project, not a precompiled JAR. The Minecraft 26.3 API compilation is unverified and further fixes may be required. This version does not have working X-Ray, ESP, or combat modules.
+If Java compilation fails again, share the first `error:` block from the run.

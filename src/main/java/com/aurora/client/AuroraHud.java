@@ -3,14 +3,13 @@ package com.aurora.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.DeltaTracker;
 
 /** Client-only overlay; never transmits any player information. */
 public final class AuroraHud {
     private AuroraHud() { }
     private static boolean on(String id) { return AuroraClient.module(id).enabled; }
 
-    public static void render(GuiGraphicsExtractor graphics, DeltaTracker delta) {
+    public static void render(GuiGraphicsExtractor graphics) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null || mc.gui.hud.isHidden()) return;
         int y = 6;
